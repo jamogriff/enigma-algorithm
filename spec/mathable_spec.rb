@@ -5,7 +5,8 @@ RSpec.describe Mathable do
 
   it 'generates a random number' do
     expect(generate_random_number(5).length).to eq 5
-    expect(generate_random_number(10)).to be_instance_of Integer
+    expect(generate_random_number(10)[9]).to be_instance_of Integer
   end
+
 
 end
