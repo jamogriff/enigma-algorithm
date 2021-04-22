@@ -18,7 +18,7 @@ class KeyGenerator
       key = generate_random_number(5)[3..4]
       key.join.to_i
     else
-      key = 000000
+      key = 00
     end
   end
 
