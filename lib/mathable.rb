@@ -10,5 +10,4 @@ module Mathable
     end
     random_num
   end
-
 end
