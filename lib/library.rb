@@ -2,6 +2,12 @@ require './lib/mathable'
 
 class Library
   include Mathable
+  attr_accessor :keygen, :date
+  
+  def initialize(date_time)
+    @keygen = KeyGenerator.new
+    @date = date_time
+  end
 
   def self.character_set
     ("a".."z").to_a << " "

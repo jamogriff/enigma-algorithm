@@ -3,7 +3,7 @@ require './lib/mathable'
 class KeyGenerator
   include Mathable
 
-  def generate_key(shift_type)
+  def generate(shift_type)
     case shift_type
     when :A
       key = generate_random_number(5)[0..1]
