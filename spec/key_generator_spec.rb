@@ -1,7 +1,7 @@
 require './lib/key_generator'
 
 RSpec.describe KeyGenerator do
-
+  describe 'key generation' do
     keygen = KeyGenerator.new
 
     it 'can return valid keys' do
@@ -13,5 +13,5 @@ RSpec.describe KeyGenerator do
       expect(keygen.generate(:C)).to eq 71
       expect(keygen.generate(:D)).to eq 15
     end
-
+  end
 end
