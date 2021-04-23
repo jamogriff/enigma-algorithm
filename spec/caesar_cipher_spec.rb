@@ -15,9 +15,6 @@ RSpec.describe CaesarCipher do
     end
 
     it 'houses reference to underlying shift algorithm' do
-      # allow(cipher.keygen).to receive(:generate_random_number) do
-      #   [0, 2, 7, 1, 5]
-      # end
       expect(cipher.code_book[:B]).to be_instance_of Hash
       expect(cipher.code_book[:D][:key]).to eq 15
       expect(cipher.code_book[:A][:key]).to eq 02

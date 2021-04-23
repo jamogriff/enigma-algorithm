@@ -1,3 +1,6 @@
+require './lib/key_generator'
+require './lib/offset_generator'
+
 class CaesarCipher
   attr_accessor :keygen, :offset_gen
 
