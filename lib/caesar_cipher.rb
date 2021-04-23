@@ -1,6 +1,6 @@
 require './lib/mathable'
 
-class Library
+class CaesarCipher
   include Mathable
   attr_accessor :keygen, :offset_gen
 
