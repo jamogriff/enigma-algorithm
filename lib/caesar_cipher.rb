@@ -1,11 +1,8 @@
-require './lib/mathable'
-
 class CaesarCipher
-  include Mathable
   attr_accessor :keygen, :offset_gen
 
-  def initialize(date_object)
-    @keygen = KeyGenerator.new
+  def initialize(random_numbers, date_object)
+    @keygen = KeyGenerator.new(random_numbers)
     @offset_gen = OffsetGenerator.new(date_object)
   end
 

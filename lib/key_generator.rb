@@ -1,18 +1,20 @@
-require './lib/mathable'
-
 class KeyGenerator
-  include Mathable
+
+  # Designed to initialize with an array of 5 numbers
+  def initialize(number)
+    @seed = number
+  end
 
   def generate(shift_type)
     case shift_type
     when :A
-      key = generate_random_number(5)[0..1]
+      key = @seed[0..1]
     when :B
-      key = generate_random_number(5)[1..2]
+      key = @seed[1..2]
     when :C
-      key = generate_random_number(5)[2..3]
+      key = @seed[2..3]
     when :D
-      key = generate_random_number(5)[3..4]
+      key = @seed[3..4]
     else
       key = [0, 0]
     end

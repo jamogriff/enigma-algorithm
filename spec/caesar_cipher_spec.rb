@@ -4,8 +4,9 @@ require './lib/offset_generator'
 
 RSpec.describe CaesarCipher do
   describe 'initialization and reference to code book' do
+    test_numbers = [0, 2, 7, 1, 5]
     current_date = Date.new(1995, 8, 4)
-    cipher = CaesarCipher.new(current_date)
+    cipher = CaesarCipher.new(test_numbers, current_date)
 
     it 'exists and accesses proper attributes' do
       expect(cipher).to be_instance_of CaesarCipher
@@ -14,9 +15,9 @@ RSpec.describe CaesarCipher do
     end
 
     it 'houses reference to underlying shift algorithm' do
-      allow(cipher.keygen).to receive(:generate_random_number) do
-        [0, 2, 7, 1, 5]
-      end
+      # allow(cipher.keygen).to receive(:generate_random_number) do
+      #   [0, 2, 7, 1, 5]
+      # end
       expect(cipher.code_book[:B]).to be_instance_of Hash
       expect(cipher.code_book[:D][:key]).to eq 15
       expect(cipher.code_book[:A][:key]).to eq 02
