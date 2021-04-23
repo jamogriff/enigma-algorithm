@@ -1,8 +1,8 @@
-class Sequencer
-  attr_reader :string, :shift
+class Translator
+  attr_reader :character, :shift
 
-  def initialize(input, shift_type)
-    @string = input
+  def initialize(character, shift_type)
+    @character = character
     @shift = shift_type
   end
 
