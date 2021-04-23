@@ -13,10 +13,6 @@ RSpec.describe Library do
       expect(repo.offset_gen).to be_instance_of OffsetGenerator
     end
 
-    it 'contains character set' do
-      expect(Library.character_set.length).to eq 27
-    end
-
     it 'houses reference to underlying shift algorithm' do
       allow(repo.keygen).to receive(:generate_random_number) do
         [0, 2, 7, 1, 5]

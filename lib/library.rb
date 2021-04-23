@@ -21,9 +21,5 @@ class Library
     end
     code_book
   end
-  
-  def self.character_set
-    ("a".."z").to_a << " "
-  end
 
 end
