@@ -22,6 +22,7 @@ RSpec.describe CaesarCipher do
       expect(cipher.code_book[:A][:key]).to eq 02
       expect(cipher.code_book[:A][:offset]).to eq 1
       expect(cipher.code_book[:C][:offset]).to eq 2
+      expect(cipher.code_book[:A][:sum]). to eq 3
     end
   end
 end

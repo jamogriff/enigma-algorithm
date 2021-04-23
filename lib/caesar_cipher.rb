@@ -14,9 +14,12 @@ class CaesarCipher
     shift_type = [:A, :B, :C, :D]
 
     shift_type.each do |letter|
+      key = keygen.generate(letter)
+      offset = offset_gen.generate(letter)
       code_book[letter] = {
-        key: keygen.generate(letter),
-        offset: offset_gen.generate(letter)
+        key: key,
+        offset: offset,
+        sum: key + offset
       }
     end
     code_book
