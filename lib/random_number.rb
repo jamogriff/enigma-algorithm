@@ -1,13 +1,13 @@
-module Mathable
+class RandomNumber
 
   # Returns an array of random numbers of chosen length
-  def generate_random_number(length)
+  def self.generate(length)
     index = 0
-    random_num = []
+    random_numbers = []
     while index < length do
-      random_num << rand(0..9)
+      random_numbers << rand(0..9)
       index += 1
     end
-    random_num
+    random_numbers
   end
 end
