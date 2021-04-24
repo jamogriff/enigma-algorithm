@@ -12,11 +12,15 @@ class Enigma
   end
 
   def encrypt(message, default_key = key, default_date = date)
-    # require 'pry'; binding.pry
     @codebook = CodeBook.new(default_key, default_date)
-
+    index = 0
+    encryption = []
+    parse_string_to_array(message).each do |char|
+      encryption << encrypt_character(char,index_to_shift(index))
+      index += 1
+    end
     {
-      encryption: "lol message here",
+      encryption: encryption.join,
       key: default_key,
       date: default_date
       }
@@ -46,6 +50,5 @@ class Enigma
   def character_set
     ("a".."z").to_a << " "
   end
-
 
 end
