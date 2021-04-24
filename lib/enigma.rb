@@ -1,7 +1,7 @@
 require './lib/key_generator'
 require './lib/offset_generator'
 
-class CaesarCipher
+class Enigma
   attr_accessor :keygen, :offset_gen
 
   def initialize(random_numbers, date_object)
