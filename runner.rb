@@ -1,4 +1,4 @@
-require './lib/caesar_cipher'
+require './lib/enigma'
 require './lib/random_number'
 require './lib/message'
 require './lib/user'
@@ -16,7 +16,7 @@ if user.program_selection == :encrypt
   user.select_file_for_encryption
   rng = RandomNumber.generate(5)
   date = Date.new(1995, 8, 4)
-  new_cipher = CaesarCipher.new(rng, date)
+  # enigma = Enigma.new(rng, date)
   puts "Aww yeah, time to encrypt with #{user.file}"
 elsif user.program_selection == :decrypt
   # user.select_file
