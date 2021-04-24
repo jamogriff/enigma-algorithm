@@ -1,19 +1,21 @@
-require './lib/key_generator'
+require './lib/key'
 require './lib/offset_generator'
 
 class Enigma
   attr_accessor :keygen, :offset_gen
 
-  def initialize(random_numbers, date_object)
-    @keygen = KeyGenerator.new(random_numbers)
-    @offset_gen = OffsetGenerator.new(date_object)
+  def initialize
+    @keygen = Key.generate
+    @offset_gen = OffsetGenerator.new(date)
   end
 
-  def encrypt(message, key=@keygen, date=Date.today)
+  def encrypt(message, key=Key.generate, date=Date.today)
+    codebook = CodeBook.new(key, date)
+
     {
-      encryption: message,
+      encryption: "lol message here",
       key: key,
-      date: date
+      date: codebook.date)
       }
   end
 

@@ -10,10 +10,6 @@ RSpec.describe OffsetGenerator do
       expect(offset_gen.date_code).to be_instance_of Array
     end
 
-    it 'parses a date into an integer code' do
-      expect(offset_gen.parse_input_date(date)).to eq 40895
-    end
-
     it 'returns four digit code number' do
       allow(offset_gen).to receive(:parse_input_date) do
         40895
