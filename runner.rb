@@ -14,6 +14,7 @@ user.choose_option
 
 if user.program_selection == :encrypt
   user.select_file_for_encryption
+  require 'pry'; binding.pry
   rng = RandomNumber.generate(5)
   date = Date.new(1995, 8, 4)
   new_cipher = CaesarCipher.new(rng, date)
@@ -23,5 +24,5 @@ elsif user.program_selection == :decrypt
   user.enter_credentials
   puts "oh okay, let's decrypt"
 else
-  Message.file_error_en
+  "lol wut"
 end
