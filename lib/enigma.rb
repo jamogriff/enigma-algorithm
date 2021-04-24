@@ -4,19 +4,21 @@ require './lib/parsable'
 
 class Enigma
   include Parsable
-  attr_accessor :keygen
+  attr_reader :key, :date
 
   def initialize
-    @keygen = Key.generate
+    @key = Key.generate
+    @date = parse_date(Date.today)
   end
 
-  def encrypt(message, key=Key.generate, date=Date.today)
-    codebook = CodeBook.new(key, parse_date(date))
+  def encrypt(message, default_key = key, default_date = date)
+    # require 'pry'; binding.pry
+    codebook = CodeBook.new(default_key, default_date)
 
     {
       encryption: "lol message here",
-      key: key,
-      date: parse_date(date))
+      key: default_key,
+      date: default_date
       }
   end
 

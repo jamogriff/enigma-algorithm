@@ -1,17 +1,31 @@
 require './lib/enigma'
 require './lib/key'
-require './lib/offset_generator'
+require './lib/code_book'
 
 RSpec.describe Enigma do
-  describe 'initialization and reference to code book' do
+  describe 'initialization and encryption' do
     test_numbers = [0, 2, 7, 1, 5]
     current_date = Date.new(1995, 8, 4)
     enigma = Enigma.new
 
-    it 'exists and accesses proper attributes' do
+    it 'exists' do
       expect(enigma).to be_instance_of Enigma
-      expect(enigma.keygen).to be_instance_of Key
-      expect(enigma.offset_gen).to be_instance_of OffsetGenerator
+      expect(enigma.key).to be_instance_of String
+      expect(enigma.date).to be_instance_of String
+    end
+
+    it 'returns default values for encryption hash' do
+      allow(enigma).to receive(:key) { "02715" }
+      allow(enigma).to receive(:date) { "040895" }
+      encryption = enigma.encrypt("hello world")
+      expect(encryption[:key]).to eq "02715"
+      expect(encryption[:date]).to eq "040895"
+    end
+
+    it 'returns key and date values when entered by user' do
+      encryption = enigma.encrypt("hello world", "02715", "040895")
+      expect(encryption[:key]).to eq "02715"
+      expect(encryption[:date]).to eq "040895"
     end
 
   end
