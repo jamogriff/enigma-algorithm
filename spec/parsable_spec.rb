@@ -9,6 +9,7 @@ RSpec.describe Parsable do
   end
 
   it 'parses string into array' do
-    expect(parse_string_to_array("1234")).to eq [1, 2, 3, 4]
+    expect(parse_string_to_array("abcd")).to eq ["a", "b", "c", "d"]
+    expect(parse_string_to_array("1234", :int)).to eq [1, 2, 3, 4]
   end
 end

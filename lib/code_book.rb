@@ -5,7 +5,7 @@ class CodeBook
   attr_reader :key_code, :date_code
 
   def initialize(key, date)
-    @key_code = parse_string_to_array(key)
+    @key_code = parse_string_to_array(key, :int)
     @date_code = create_date_code(date)
   end
 
@@ -25,7 +25,7 @@ class CodeBook
   def create_date_code(date)
     squared = date.to_i**2
     trimmed_chars = squared.to_s[-4..-1]
-    parse_string_to_array(trimmed_chars)
+    parse_string_to_array(trimmed_chars, :int)
   end
 
   def offset_shift(offset_type)

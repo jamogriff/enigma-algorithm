@@ -7,10 +7,16 @@ module Parsable
     ordered_array.join
   end
 
-  def parse_string_to_array(string)
-    string.split(//).map do |char|
-      char.to_i
+  def parse_string_to_array(string, type = :string)
+    if type == :int
+      string.split(//).map do |char|
+        char.to_i
+      end
+    else
+      string.split(//).map do |char|
+        char
+      end
     end
   end
-  
+
 end
