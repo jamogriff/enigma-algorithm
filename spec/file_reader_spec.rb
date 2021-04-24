@@ -7,6 +7,7 @@ RSpec.describe FileReader do
     it 'exists and accesses its attributes' do
       expect(file).to be_instance_of FileReader
       expect(file.path).to eq './test.txt'
+      expect(file.file).to be_instance_of File
     end
   end
 
