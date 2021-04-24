@@ -9,6 +9,14 @@ class Enigma
     @offset_gen = OffsetGenerator.new(date_object)
   end
 
+  def encrypt(message, key=@keygen, date=Date.today)
+    {
+      encryption: message,
+      key: key,
+      date: date
+      }
+  end
+
   def code_book
     code_book = {}
     shift_type = [:A, :B, :C, :D]

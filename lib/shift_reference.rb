@@ -1,9 +1,4 @@
-class KeyGenerator
-
-  # Designed to initialize with an array of 5 numbers
-  def initialize(number)
-    @seed = number
-  end
+class ShiftReference
 
   def generate(shift_type)
     case shift_type
@@ -18,7 +13,7 @@ class KeyGenerator
     else
       key = [0, 0]
     end
-    key.join.to_i
+    key.join
   end
-
+  
 end
