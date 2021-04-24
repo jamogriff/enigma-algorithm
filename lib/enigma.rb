@@ -13,7 +13,7 @@ class Enigma
 
   def encrypt(message, default_key = key, default_date = date)
     # require 'pry'; binding.pry
-    codebook = CodeBook.new(default_key, default_date)
+    @codebook = CodeBook.new(default_key, default_date)
 
     {
       encryption: "lol message here",
@@ -21,5 +21,14 @@ class Enigma
       date: default_date
       }
   end
+
+  def translate_character(char, shift)
+
+  end
+
+  def character_set
+    ("a".."z").to_a << " "
+  end
+
 
 end

@@ -32,5 +32,13 @@ RSpec.describe Enigma do
       encryption = enigma.encrypt("hello world", "02715", "040895")
       expect(encryption[:encryption]).to eq "keder ohulw"
     end
+
+    it 'includes data set to translate characters' do
+      expect(enigma.character_set.length).to eq 27
+    end
+
+    it 'can translate character' do
+      expect(enigma.translate_character("h", :A)). to eq "k"
+    end
   end
 end
