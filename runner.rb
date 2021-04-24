@@ -13,11 +13,14 @@ user.welcome_user
 user.choose_option
 
 if user.program_selection == :encrypt
+  user.select_file_for_encryption
   rng = RandomNumber.generate(5)
   date = Date.new(1995, 8, 4)
   new_cipher = CaesarCipher.new(rng, date)
-  puts "Aww yeah, time to encrypt"
+  puts "Aww yeah, time to encrypt with #{user.file}"
 elsif user.program_selection == :decrypt
+  user.select_file
+  user.enter_credentials
   puts "oh okay, let's decrypt"
 else
   Message.file_error_en
