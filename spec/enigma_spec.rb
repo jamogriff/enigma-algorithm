@@ -28,5 +28,9 @@ RSpec.describe Enigma do
       expect(encryption[:date]).to eq "040895"
     end
 
+    it 'correctly encrypts message' do
+      encryption = enigma.encrypt("hello world", "02715", "040895")
+      expect(encryption[:encryption]).to eq "keder ohulw"
+    end
   end
 end
