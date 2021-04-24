@@ -37,10 +37,19 @@ RSpec.describe Enigma do
       expect(enigma.character_set.length).to eq 27
     end
 
-    it 'can translate character' do
+    it 'can translate character and skip special characters' do
       # instantiating because encrypt creates CodeBook
       encryption = enigma.encrypt("hello world", "02715", "040895")
-      expect(enigma.encrypt_character("h", :A)). to eq "k"
+      expect(enigma.encrypt_character("h", :A)).to eq "k"
+      expect(enigma.encrypt_character("@", :B)).to eq "@"
     end
+
+    it 'can relate index to shift type' do
+      expect(enigma.index_to_shift(19)).to eq :D
+      expect(enigma.index_to_shift(13)).to eq :B
+      expect(enigma.index_to_shift(72)).to eq :A
+      expect(enigma.index_to_shift(99)).to eq :D
+    end
+
   end
 end

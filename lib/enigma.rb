@@ -22,11 +22,25 @@ class Enigma
       }
   end
 
+  def index_to_shift(index)
+    shift_map = {
+      0 => :A, 1 => :B,
+      2 => :C, 3 => :D
+    }
+    clock_index = index % shift_map.keys.length
+    shift_map[clock_index]
+  end
+
   def encrypt_character(character, shift)
-    char_index = character_set.index(character)
-    shift_amount = @codebook.shifts[shift][:sum]
-    character_set[char_index + shift_amount]
-    # require 'pry';binding.pry
+    downcase = character.downcase
+    if character_set.include?(downcase)
+      char_index = character_set.index(character.downcase)
+      shift_amount = @codebook.shifts[shift][:sum]
+      clock_index = (char_index + shift_amount) % character_set.length
+      character_set[clock_index]
+    else
+      character
+    end
   end
 
   def character_set
