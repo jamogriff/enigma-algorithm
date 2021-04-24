@@ -1,38 +1,23 @@
 require './lib/key'
-require './lib/offset_generator'
+require './lib/code_book'
+require './lib/parsable'
 
 class Enigma
-  attr_accessor :keygen, :offset_gen
+  include Parsable
+  attr_accessor :keygen
 
   def initialize
     @keygen = Key.generate
-    @offset_gen = OffsetGenerator.new(date)
   end
 
   def encrypt(message, key=Key.generate, date=Date.today)
-    codebook = CodeBook.new(key, date)
+    codebook = CodeBook.new(key, parse_date(date))
 
     {
       encryption: "lol message here",
       key: key,
-      date: codebook.date)
+      date: parse_date(date))
       }
-  end
-
-  def code_book
-    code_book = {}
-    shift_type = [:A, :B, :C, :D]
-
-    shift_type.each do |letter|
-      key = keygen.generate(letter)
-      offset = offset_gen.generate(letter)
-      code_book[letter] = {
-        key: key,
-        offset: offset,
-        sum: key + offset
-      }
-    end
-    code_book
   end
 
 end

@@ -1,39 +1,31 @@
+require './lib/parsable'
+
 class CodeBook
-  attr_reader :full_key, :date, :date_code
+  include Parsable
+  attr_reader :key_code, :date_code
 
   def initialize(key, date)
-    @full_key = key.to_i
-    @date = parse_date(date)
-    @date_code = create_date_code
+    @key_code = parse_string_to_array(key)
+    @date_code = create_date_code(date)
   end
 
-  def shift_reference
+  def shifts
     reference = {}
     shift_types = [:A, :B, :C, :D]
-
     shift_types.each do |letter|
       reference[letter] = {
-        key: key_shift,
-        offset: offset_shift,
-        sum: key_shift + offset_shift
+        key: key_shift(letter),
+        offset: offset_shift(letter),
+        sum: key_shift(letter) + offset_shift(letter)
       }
     end
     reference
   end
 
-  def parse_date(input_date)
-    date_string = input_date.to_s
-    corrected_digits = date_string[2..-1]
-    ordered_array = corrected_digits.split('-').reverse
-    ordered_array.join
-  end
-
-  def create_date_code
+  def create_date_code(date)
     squared = date.to_i**2
     trimmed_chars = squared.to_s[-4..-1]
-    trimmed_chars.split(//).map do |char|
-      char.to_i
-    end
+    parse_string_to_array(trimmed_chars)
   end
 
   def offset_shift(offset_type)
@@ -54,13 +46,13 @@ class CodeBook
   def key_shift(key_type)
     case key_type
     when :A
-      key = @full_key[0..1]
+      key = key_code[0..1]
     when :B
-      key = @full_key[1..2]
+      key = key_code[1..2]
     when :C
-      key = @full_key[2..3]
+      key = key_code[2..3]
     when :D
-      key = @full_key[3..4]
+      key = key_code[3..4]
     else
       key = [0, 0]
     end

@@ -6,5 +6,11 @@ module Parsable
     ordered_array = corrected_digits.split('-').reverse
     ordered_array.join
   end
+
+  def parse_string_to_array(string)
+    string.split(//).map do |char|
+      char.to_i
+    end
+  end
   
 end

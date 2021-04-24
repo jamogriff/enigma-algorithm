@@ -14,14 +14,5 @@ RSpec.describe Enigma do
       expect(enigma.offset_gen).to be_instance_of OffsetGenerator
     end
 
-    xit 'houses reference to underlying shift algorithm' do
-      expect(enigma.code_book[:B]).to be_instance_of Hash
-      expect(enigma.code_book[:D][:key]).to eq 15
-      expect(enigma.code_book[:A][:key]).to eq 02
-      expect(enigma.code_book[:A][:offset]).to eq 1
-      expect(enigma.code_book[:C][:offset]).to eq 2
-      expect(enigma.code_book[:A][:sum]). to eq 3
-    end
-
   end
 end
