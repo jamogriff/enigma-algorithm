@@ -38,7 +38,9 @@ RSpec.describe Enigma do
     end
 
     it 'can translate character' do
-      expect(enigma.translate_character("h", :A)). to eq "k"
+      # instantiating because encrypt creates CodeBook
+      encryption = enigma.encrypt("hello world", "02715", "040895")
+      expect(enigma.encrypt_character("h", :A)). to eq "k"
     end
   end
 end

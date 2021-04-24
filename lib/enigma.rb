@@ -22,8 +22,11 @@ class Enigma
       }
   end
 
-  def translate_character(char, shift)
-
+  def encrypt_character(character, shift)
+    char_index = character_set.index(character)
+    shift_amount = @codebook.shifts[shift][:sum]
+    character_set[char_index + shift_amount]
+    # require 'pry';binding.pry
   end
 
   def character_set
