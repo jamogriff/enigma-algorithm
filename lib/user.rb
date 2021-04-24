@@ -3,7 +3,6 @@ class User
 
   def initialize(language)
     @language = language
-    @program_selection = nil
   end
 
   def welcome_user
