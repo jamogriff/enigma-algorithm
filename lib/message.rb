@@ -70,6 +70,14 @@ class Message
     end
   end
 
+  def self.new_file_error(language)
+    if language == "es"
+      puts "Lo siento, ese archivo ya existe."
+    else
+      puts "Sorry, that file already exists. Please try again."
+    end
+  end
+
   def self.enter_key(language)
     if language == "es"
       puts "Por favor escribar el clave de cinco dígitos utilizada para cifrar."
@@ -88,6 +96,16 @@ class Message
       puts "Example: 1998-10-02"
     end
     print "> "
+  end
+
+  def self.select_file_destination(language)
+    if language == "es"
+      puts "Qué nombre quieres para el neuvo archivo?"
+      puts "Ejemplo: datos_seguros.txt"
+    else
+      puts "What name do you want the new file to be called?"
+      puts "Example: secured_data.txt"
+    end
   end
 
   def self.successful_encryption(language)
