@@ -47,6 +47,33 @@ class Enigma
     end
   end
 
+  def decrypt(message, default_key = key, default_date = date)
+    @codebook = CodeBook.new(default_key, default_date)
+    index = 0
+    decryption = []
+    parse_string_to_array(message).each do |char|
+      decryption << decrypt_character(char,index_to_shift(index))
+      index += 1
+    end
+    {
+      decryption: decryption.join,
+      key: default_key,
+      date: default_date
+      }
+  end
+
+  def decrypt_character(character, shift)
+    downcase = character.downcase
+    if character_set.include?(downcase)
+      char_index = character_set.index(character.downcase)
+      shift_amount = @codebook.shifts[shift][:sum]
+      clock_index = (char_index - shift_amount) % character_set.length
+      character_set[clock_index]
+    else
+      character
+    end
+  end
+
   def character_set
     ("a".."z").to_a << " "
   end
