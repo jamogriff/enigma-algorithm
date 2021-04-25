@@ -14,14 +14,11 @@ class Enigma
 
   def encrypt(message, default_key = key, default_date = date)
     @codebook = CodeBook.new(default_key, parse_date_for_code(default_date))
-    index = 0
-    encryption = []
-    parse_string_to_array(message).each do |char|
-      encryption << encrypt_character(char,index_to_shift(index))
-      index += 1
-    end
+    encryption = parse_string_to_array(message).map.with_index do |char, index|
+      encrypt_character(char,index_to_shift(index))
+    end.join
     {
-      encryption: encryption.join,
+      encryption: encryption,
       key: default_key,
       date: default_date
       }
@@ -37,9 +34,9 @@ class Enigma
   end
 
   def encrypt_character(character, shift)
-    downcase = character.downcase
-    if character_set.include?(downcase)
-      char_index = character_set.index(character.downcase)
+    downcase_char = character.downcase
+    if character_set.include?(downcase_char)
+      char_index = character_set.index(downcase_char)
       shift_amount = @codebook.shifts[shift][:sum]
       clock_index = (char_index + shift_amount) % character_set.length
       character_set[clock_index]
@@ -50,23 +47,20 @@ class Enigma
 
   def decrypt(message, input_key, default_date = date)
     @codebook = CodeBook.new(input_key, parse_date_for_code(default_date))
-    index = 0
-    decryption = []
-    parse_string_to_array(message).each do |char|
-      decryption << decrypt_character(char,index_to_shift(index))
-      index += 1
-    end
+    decryption = parse_string_to_array(message).map.with_index do |char, index|
+      decrypt_character(char,index_to_shift(index))
+    end.join
     {
-      decryption: decryption.join,
+      decryption: decryption,
       key: input_key,
       date: default_date
       }
   end
 
   def decrypt_character(character, shift)
-    downcase = character.downcase
-    if character_set.include?(downcase)
-      char_index = character_set.index(character.downcase)
+    downcase_char = character.downcase
+    if character_set.include?(downcase_char)
+      char_index = character_set.index(downcase_char)
       shift_amount = @codebook.shifts[shift][:sum]
       clock_index = (char_index - shift_amount) % character_set.length
       character_set[clock_index]
