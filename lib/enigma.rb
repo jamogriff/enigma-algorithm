@@ -1,6 +1,7 @@
 require './lib/key'
 require './lib/code_book'
 require './lib/parsable'
+require 'date'
 
 class Enigma
   include Parsable
