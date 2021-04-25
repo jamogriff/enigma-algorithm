@@ -108,13 +108,11 @@ class Message
     end
   end
 
-  def self.successful_encryption(language)
+  def self.successful_encryption(language, file_path, key, date)
     if language == "es"
-      puts "Cifrado de archivo exitoso."
-      puts "Recuerde la siguiente clave y fecha para descifrar:\n"
+      puts "Creado \'#{file_path}\' con la clave #{key} y la fecha #{date}."
     else
-      puts "Your file was successfully encrypted."
-      puts "Please write down the following key and date to decrypt later:\n"
+      puts "Created \'#{file_path}\' with the key #{key} and date #{date}."
     end
   end
 
