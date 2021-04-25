@@ -9,11 +9,11 @@ class Enigma
 
   def initialize
     @key = Key.generate
-    @date = parse_date(Date.today)
+    @date = parse_human_readable_date(Date.today)
   end
 
   def encrypt(message, default_key = key, default_date = date)
-    @codebook = CodeBook.new(default_key, default_date)
+    @codebook = CodeBook.new(default_key, parse_date_for_code(default_date))
     index = 0
     encryption = []
     parse_string_to_array(message).each do |char|
@@ -48,8 +48,8 @@ class Enigma
     end
   end
 
-  def decrypt(message, default_key = key, default_date = date)
-    @codebook = CodeBook.new(default_key, default_date)
+  def decrypt(message, input_key, default_date = date)
+    @codebook = CodeBook.new(input_key, parse_date_for_code(default_date))
     index = 0
     decryption = []
     parse_string_to_array(message).each do |char|
@@ -58,7 +58,7 @@ class Enigma
     end
     {
       decryption: decryption.join,
-      key: default_key,
+      key: input_key,
       date: default_date
       }
   end
