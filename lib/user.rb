@@ -1,12 +1,8 @@
 class User
-  attr_reader :language, :program_selection, :file, :new_filepath
+  attr_reader :language, :program_selection, :filepath
 
   def initialize(language)
     @language = language
-  end
-
-  def welcome_user
-    Message.begin_program(language)
   end
 
   def choose_option
@@ -27,32 +23,18 @@ class User
     end
   end
 
-  def select_file_for_encryption
+  def select_file
     file_check = false
     while file_check == false
-      Message.select_encrypt_file(language)
-      file_path = './data/' + gets.chomp
+      Message.select_file(language)
+      file_path = './files/' + gets.chomp
       if File.exist?(file_path)
         file_check = true
-        @file = File.read(file_path)
       else
         Message.file_error(language)
       end
     end
-  end
-
-  def select_file_for_decryption
-    file_check = false
-    while file_check == false
-      Message.select_decrypt_file(language)
-      file_path = './data/' + gets.chomp
-      if File.exist?(file_path)
-        file_check = true
-        @file = File.read(file_path)
-      else
-        Message.file_error(language)
-      end
-    end
+    File.read(file_path)
   end
 
   def get_key_input
@@ -69,14 +51,14 @@ class User
     file_check = false
     while file_check == false
       Message.select_file_destination(language)
-      file_path = './data/' + gets.chomp
+      file_path = './files/' + gets.chomp
       if !File.exist?(file_path)
         file_check = true
-        @new_filepath = file_path
+        @filepath = file_path
       else
         Message.new_file_error(language)
       end
     end
+    file_path
   end
-
 end

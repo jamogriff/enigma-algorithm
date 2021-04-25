@@ -1,17 +1,10 @@
 class Message
 
   def self.home_screen
-    puts '    ___                       '
-    puts '   / __|__ _ ___ ___ __ _ _ _ '
-    puts "  | (__/ _` / -_|_-</ _` | '_|"
-    puts '   \___\__,_\___/__/\__,_|_|  '
-    puts '    ___ ___ ___ _  _ ___ ___ '
-    puts '   / __|_ _| _ \ || | __| _ \ '
-    puts '  | (__ | ||  _/ __ | _||   /'
-    puts '   \___|___|_| |_||_|___|_|_\ '
-  end
-
-  def self.select_language
+    puts '  ___ _  _ ___ ___ __  __   _   '
+    puts ' | __| \| |_ _/ __|  \/  | /_\  '
+    puts ' | _|| .` || | (_ | |\/| |/ _ \ '
+    puts ' |___|_|\_|___\___|_|  |_/_/ \_\ '
     puts "\nPlease type 'en' for English prompts or 'es' for Spanish."
     puts "Por favor escribe 'en' para texto en Ingles o 'es' en Espanol."
     print "> "
@@ -19,15 +12,16 @@ class Message
 
   def self.begin_program(language)
     if language == "es"
-      puts "Bienvenidos a CaesarCipher.\n"
+      puts "Bienvenidos a Enigma, un programa de cifrado/descifrado de archivos.\n"
       puts "Coloque los archivos textos en la carpeta de \'files\'."
     else
-      puts "Welcome to CaesarCipher.\n"
+      puts "Welcome to Enigma, a file encryption/decryption program.\n"
       puts "Please place text files in this directory's \'files\' folder."
     end
   end
 
   def self.select_program(language)
+    print "\n"
     if language == "es"
       puts "Entras 1 o 2 para continuar:"
       puts "1. Encriptar Archivo"
@@ -42,23 +36,13 @@ class Message
     print "> "
   end
 
-  def self.select_encrypt_file(language)
+  def self.select_file(language)
     if language == "es"
-      puts "Por favor escribar la nombre de archivo a cifrar."
-      puts "Ejemplo: datos_no_seguros.txt"
+      puts "Por favor escribes la nombre de archivo a cifrar/descifrar"
+      puts "Ejemplo: shakespeare.txt"
     else
-      puts "Please enter the name of the text file to be encrypted."
-      puts "Example: unsecured_data.txt"
-    end
-  end
-
-  def self.select_decrypt_file(language)
-    if language == "es"
-      puts "Por favor escribar la nombre de archivo a descifrar."
-      puts "Ejemplo: datos_seguros.txt"
-    else
-      puts "Please enter the name of the text file to be decrypted."
-      puts "Example: secured_data.txt"
+      puts "Please enter the name of the text file to be encrypted/decrypted."
+      puts "Example: shakespeare.txt"
     end
   end
 
@@ -80,7 +64,7 @@ class Message
 
   def self.enter_key(language)
     if language == "es"
-      puts "Por favor escribar el clave de cinco dígitos utilizada para cifrar."
+      puts "Por favor escribes el clave de cinco dígitos utilizada para cifrar."
     else
       puts "Please enter the 5 digit key used for encryption."
     end
@@ -89,11 +73,9 @@ class Message
 
   def self.enter_date(language)
     if language == "es"
-      puts "Por favor escribar la fecha utilizada para cifrar."
-      puts "Ejemplo: 2020-10-02"
+      puts "Por favor escribes la fecha utilizada para cifrar."
     else
       puts "Please enter the date used for encryption."
-      puts "Example: 1998-10-02"
     end
     print "> "
   end
@@ -101,14 +83,14 @@ class Message
   def self.select_file_destination(language)
     if language == "es"
       puts "Qué nombre quieres para el neuvo archivo?"
-      puts "Ejemplo: datos_seguros.txt"
+      puts "Ejemplo: archivo_neuvo.txt"
     else
       puts "What name do you want the new file to be called?"
-      puts "Example: secured_data.txt"
+      puts "Example: new_file.txt"
     end
   end
 
-  def self.successful_encryption(language, file_path, key, date)
+  def self.success(language, file_path, key, date)
     if language == "es"
       puts "Creado \'#{file_path}\' con la clave #{key} y la fecha #{date}."
     else
@@ -116,19 +98,11 @@ class Message
     end
   end
 
-  def self.successful_decryption(language)
-    if language == "es"
-      puts "Descifrado de archivo exitoso."
-    else
-      puts "Your file was successfully decrypted."
-    end
-  end
-
   def self.end_program(language)
     if language == "es"
-      puts "Adios! Gracias para usar CaesarCipher."
+      puts "Adios! Gracias para usar Enigma."
     else
-      puts "Goodbye! Thanks for using CaesarCipher."
+      puts "Goodbye! Thanks for using Enigma."
     end
   end
 end
