@@ -24,28 +24,10 @@ class Enigma
       }
   end
 
-  def index_to_shift(index)
-    shift_map = {
-      0 => :A, 1 => :B,
-      2 => :C, 3 => :D
-    }
-    clock_index = index % shift_map.keys.length
-    shift_map[clock_index]
-  end
-
-  def find_shift(shift_type)
-    @codebook.shifts[shift_type][:sum]
-  end
-
-  def find_char_index(character)
-    character_set.index(character)
-  end
-
   def encrypt_character(character, shift)
     downcase_char = character.downcase
     if character_set.include?(downcase_char)
-      clock_index = (find_char_index(downcase_char) + find_shift(shift)) % character_set.length
-      character_set[clock_index]
+      character_set[normalized_encryption_index(downcase_char, shift)]
     else
       character
     end
@@ -66,11 +48,35 @@ class Enigma
   def decrypt_character(character, shift)
     downcase_char = character.downcase
     if character_set.include?(downcase_char)
-      clock_index = (find_char_index(downcase_char) - find_shift(shift)) % character_set.length
-      character_set[clock_index]
+      character_set[normalized_decryption_index(downcase_char, shift)]
     else
       character
     end
+  end
+
+  def normalized_encryption_index(character, shift_type)
+    (find_char_index(character) + find_shift(shift_type)) % character_set.length
+  end
+
+  def normalized_decryption_index(character, shift_type)
+    (find_char_index(character) - find_shift(shift_type)) % character_set.length
+  end
+
+  def index_to_shift(index)
+    shift_map = {
+      0 => :A, 1 => :B,
+      2 => :C, 3 => :D
+    }
+    normalized_index = index % shift_map.keys.length
+    shift_map[normalized_index]
+  end
+
+  def find_shift(shift_type)
+    @codebook.shifts[shift_type][:sum]
+  end
+
+  def find_char_index(character)
+    character_set.index(character)
   end
 
   def character_set

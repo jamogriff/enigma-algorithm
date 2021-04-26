@@ -61,6 +61,16 @@ RSpec.describe Enigma do
       expect(enigma.find_char_index("d")).to eq 3
     end
 
+    it 'returns normalized encryption index' do
+      allow(enigma).to receive(:find_shift) { 72 }
+      expect(enigma.normalized_encryption_index("a",:A)).to eq 18
+    end
+
+    it 'returns normalized decryption index' do
+      allow(enigma).to receive(:find_shift) { 72 }
+      expect(enigma.normalized_decryption_index("a",:A)).to eq 9 
+    end
+
     it 'correctly decrypts message' do
       decryption = enigma.decrypt("keder ohulw", "02715", "950804")
       expect(decryption[:decryption]).to eq "hello world"
