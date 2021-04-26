@@ -55,6 +55,11 @@ class Enigma
   end
 
   def pattern_exists?(message)
+    if (message =~ / end/) != nil
+      true
+    else
+      false
+    end
   end
 
   def normalized_encryption_index(character, shift_type)
