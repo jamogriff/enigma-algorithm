@@ -54,6 +54,9 @@ class Enigma
     end
   end
 
+  def pattern_exists?(message)
+  end
+
   def normalized_encryption_index(character, shift_type)
     (find_char_index(character) + find_shift(shift_type)) % character_set.length
   end

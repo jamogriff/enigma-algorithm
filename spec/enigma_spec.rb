@@ -82,4 +82,15 @@ RSpec.describe Enigma do
       expect(enigma.decrypt_character("@", :B)).to eq "@"
     end
   end
+
+  describe 'key cracking functionality' do
+    enigma = Enigma.new
+
+    it 'can find matching text' do
+      test_message = "hello world end"
+      test_message2 = "hello world"
+      expect(enigma.pattern_exists?(test_message)).to eq true
+      expect(enigma.pattern_exists?(test_message2)).to eq false
+    end
+  end
 end
