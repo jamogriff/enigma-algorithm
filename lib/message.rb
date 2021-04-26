@@ -26,12 +26,14 @@ class Message
       puts "Entras 1 o 2 para continuar:"
       puts "1. Encriptar Archivo"
       puts "2. Desencriptar Archivo"
-      puts "3. Cerrar la Programa"
+      puts "3. \'Crack\' Archivo"
+      puts "4. Cerrar la Programa"
     else
       puts "Enter 1 or 2 to continue:"
       puts "1. Encrypt File"
       puts "2. Decrypt File"
-      puts "3. Close Program"
+      puts "3. Crack File"
+      puts "4. Close Program"
     end
     print "> "
   end
@@ -95,6 +97,22 @@ class Message
       puts "Creado \'#{file_path}\' con la clave #{key} y la fecha #{date}."
     else
       puts "Created \'#{file_path}\' with the key #{key} and date #{date}."
+    end
+  end
+  
+  def self.start_crack(language)
+    if language == "es"
+      puts "Descifrado de cifrado en curso..."
+    else
+      puts "Cracking encryption in progress..."
+    end
+  end
+
+  def self.crack_success(language, file_path, key, date, operations)
+    if language == "es"
+      puts "Creado \'#{file_path}\' con la clave de \'cracked\' #{key} y la fecha #{date} en #{operations} operaciones."
+    else
+      puts "Created \'#{file_path}\' with the cracked key #{key} and date #{date} en #{operations} operations."
     end
   end
 

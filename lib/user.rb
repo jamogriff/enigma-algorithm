@@ -17,6 +17,9 @@ class User
         option_check = true
         @program_selection = :decrypt
       elsif (user_option == "3")
+        option_check = true
+        @program_selection = :crack
+      elsif (user_option == "4")
         Message.end_program(language)
         exit
       end

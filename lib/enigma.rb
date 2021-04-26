@@ -54,14 +54,6 @@ class Enigma
     end
   end
 
-  def pattern_exists?(message)
-    if (message[-4..-1] =~ / end/) != nil
-      true
-    else
-      false
-    end
-  end
-
   def crack(message, default_date=@date)
     decrypted_message = message
     counter = 0
@@ -70,7 +62,8 @@ class Enigma
       decryption = decrypt(message, new_key, default_date)
       decrypted_message = decryption[:decryption]
       counter += 1
-      if counter == 100001
+      if counter == 100000
+        puts "Error occured in cracking."
         break
       end
     end
@@ -80,6 +73,15 @@ class Enigma
       date: default_date,
       operations: counter
       }
+  end
+
+  # Indexes are off to account for newline character
+  def pattern_exists?(message)
+    if (message[-5..-2] =~ / end/) != nil
+      true
+    else
+      false
+    end
   end
 
   def normalized_encryption_index(character, shift_type)
@@ -110,5 +112,4 @@ class Enigma
   def character_set
     ("a".."z").to_a << " "
   end
-
 end

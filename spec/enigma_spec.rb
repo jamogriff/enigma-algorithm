@@ -85,7 +85,7 @@ RSpec.describe Enigma do
 
   describe 'key cracking functionality' do
     enigma = Enigma.new
-    test_message = "hello world end"
+    test_message = "hello world end\n"
     encryption = enigma.encrypt(test_message, "02715", "950804")
 
     it 'can find matching text' do
