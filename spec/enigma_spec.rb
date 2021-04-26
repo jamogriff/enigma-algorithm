@@ -85,12 +85,26 @@ RSpec.describe Enigma do
 
   describe 'key cracking functionality' do
     enigma = Enigma.new
+    test_message = "hello world end"
+    encryption = enigma.encrypt(test_message, "02715", "950804")
 
     it 'can find matching text' do
-      test_message = "hello world end"
       test_message2 = "hello world"
       expect(enigma.pattern_exists?(test_message)).to eq true
       expect(enigma.pattern_exists?(test_message2)).to eq false
+    end
+
+    it 'can crack decrypted message with date code' do
+      crack = enigma.crack(encryption[:encryption], "950804")
+      expect(crack[:decryption]).to eq test_message
+      puts "Cracked encrypted message in #{crack[:operations]} operations."
+    end
+
+    it 'can crack decrypted message without date code' do
+      todays_encryption = enigma.encrypt(test_message)
+      crack = enigma.crack(todays_encryption[:encryption])
+      expect(crack[:decryption]).to eq test_message
+      puts "Cracked encrypted message in #{crack[:operations]} operations."
     end
   end
 end

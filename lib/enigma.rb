@@ -55,11 +55,31 @@ class Enigma
   end
 
   def pattern_exists?(message)
-    if (message =~ / end/) != nil
+    if (message[-4..-1] =~ / end/) != nil
       true
     else
       false
     end
+  end
+
+  def crack(message, default_date=@date)
+    decrypted_message = message
+    counter = 0
+    while pattern_exists?(decrypted_message) == false
+      new_key = Key.generate_optimized(counter)
+      decryption = decrypt(message, new_key, default_date)
+      decrypted_message = decryption[:decryption]
+      counter += 1
+      if counter == 100001
+        break
+      end
+    end
+    {
+      decryption: decrypted_message,
+      key: new_key,
+      date: default_date,
+      operations: counter
+      }
   end
 
   def normalized_encryption_index(character, shift_type)
