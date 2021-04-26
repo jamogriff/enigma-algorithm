@@ -21,5 +21,13 @@ while runtime_loop == true
     File.new(user.select_file_destination, "w")
     File.write(user.filepath, decryption[:decryption], mode: "w")
     Message.success(user.language, user.filepath, decryption[:key], decryption[:date])
+  elsif user.program_selection == :crack
+    encrypted_file = user.select_file
+    File.new(user.select_file_destination, "w")
+    date = user.get_date_input
+    Message.start_crack(user.language)
+    crack = enigma.crack(encrypted_file, date)
+    File.write(user.filepath, crack[:decryption], mode: "w")
+    Message.crack_success(user.language, user.filepath, crack[:key], crack[:date], crack[:operations])
   end
 end
