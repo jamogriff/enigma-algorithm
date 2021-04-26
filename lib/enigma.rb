@@ -37,11 +37,14 @@ class Enigma
     @codebook.shifts[shift_type][:sum]
   end
 
+  def find_char_index(character)
+    character_set.index(character)
+  end
+
   def encrypt_character(character, shift)
     downcase_char = character.downcase
     if character_set.include?(downcase_char)
-      char_index = character_set.index(downcase_char)
-      clock_index = (char_index + find_shift(shift)) % character_set.length
+      clock_index = (find_char_index(downcase_char) + find_shift(shift)) % character_set.length
       character_set[clock_index]
     else
       character
@@ -63,8 +66,7 @@ class Enigma
   def decrypt_character(character, shift)
     downcase_char = character.downcase
     if character_set.include?(downcase_char)
-      char_index = character_set.index(downcase_char)
-      clock_index = (char_index - find_shift(shift)) % character_set.length
+      clock_index = (find_char_index(downcase_char) - find_shift(shift)) % character_set.length
       character_set[clock_index]
     else
       character

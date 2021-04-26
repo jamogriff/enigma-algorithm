@@ -56,6 +56,11 @@ RSpec.describe Enigma do
       expect(enigma.find_shift(:A)).to eq 3
     end
 
+    it 'returns correct character index' do
+      expect(enigma.find_char_index("a")).to eq 0
+      expect(enigma.find_char_index("d")).to eq 3
+    end
+
     it 'correctly decrypts message' do
       decryption = enigma.decrypt("keder ohulw", "02715", "950804")
       expect(decryption[:decryption]).to eq "hello world"
