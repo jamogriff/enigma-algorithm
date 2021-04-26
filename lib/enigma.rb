@@ -33,12 +33,15 @@ class Enigma
     shift_map[clock_index]
   end
 
+  def find_shift(shift_type)
+    @codebook.shifts[shift_type][:sum]
+  end
+
   def encrypt_character(character, shift)
     downcase_char = character.downcase
     if character_set.include?(downcase_char)
       char_index = character_set.index(downcase_char)
-      shift_amount = @codebook.shifts[shift][:sum]
-      clock_index = (char_index + shift_amount) % character_set.length
+      clock_index = (char_index + find_shift(shift)) % character_set.length
       character_set[clock_index]
     else
       character
@@ -61,8 +64,7 @@ class Enigma
     downcase_char = character.downcase
     if character_set.include?(downcase_char)
       char_index = character_set.index(downcase_char)
-      shift_amount = @codebook.shifts[shift][:sum]
-      clock_index = (char_index - shift_amount) % character_set.length
+      clock_index = (char_index - find_shift(shift)) % character_set.length
       character_set[clock_index]
     else
       character
